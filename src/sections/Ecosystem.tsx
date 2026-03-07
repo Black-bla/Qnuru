@@ -114,7 +114,7 @@ const Ecosystem = () => {
     <section
       ref={sectionRef}
       id="ecosystem"
-      className="relative w-full bg-[#F6F7FB] py-20 lg:py-32 z-40"
+      className="relative w-full bg-white dark:bg-gray-900 py-20 lg:py-32 z-40 transition-colors duration-300"
     >
       <div className="w-full px-6 lg:px-12">
         {/* Section label */}

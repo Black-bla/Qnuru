@@ -4,7 +4,25 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        lato: ['Lato', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
+        pepsi: ['Pepsi', 'Impact', 'sans-serif'],
+      },
       colors: {
+        // Brand Colors
+        brand: {
+          black: '#000000',
+          blue: '#0B3D91',
+          green: '#00BFA6',
+          'blue-dark': '#2563EB',
+          'green-dark': '#10D9C1',
+        },
+        canvas: {
+          light: '#F4F4F2',
+          dark: '#0A0A0A',
+        },
+        // Shadcn UI Colors
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

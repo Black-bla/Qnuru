@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ShieldCheck, Check, TrendingUp, Clock, RefreshCw } from 'lucide-react';
+import { Check, TrendingUp, Clock, RefreshCw } from 'lucide-react';
+import Earth from '@/components/ui/globe';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -80,13 +81,13 @@ const Guarantee = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-[#F6F7FB] py-20 lg:py-32 z-50"
+      className="relative w-full bg-white dark:bg-gray-900 py-20 lg:py-32 z-50 transition-colors duration-300"
     >
       <div className="w-full px-6 lg:px-12">
         {/* Main guarantee card */}
         <div
           ref={cardRef}
-          className="max-w-4xl mx-auto card-q p-8 lg:p-12 will-change-transform overflow-hidden relative"
+          className="max-w-4xl mx-auto card-q dark:bg-gray-900 p-8 lg:p-12 will-change-transform overflow-hidden relative"
         >
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#FFB400]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
@@ -94,21 +95,21 @@ const Guarantee = () => {
           <div className="relative flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
             {/* Badge */}
             <div className="flex-shrink-0">
-              <div className="w-24 h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-[#FFB400] to-[#00BFA6] rounded-full flex items-center justify-center shadow-xl">
-                <ShieldCheck className="w-12 h-12 lg:w-16 lg:h-16 text-white" />
+              <div className="w-40 h-40 lg:w-48 lg:h-48 flex items-center justify-center">
+                <Earth />
               </div>
             </div>
 
             {/* Content */}
             <div className="text-center lg:text-left">
-              <span className="section-label">Our Promise</span>
+              <span className="section-label dark:text-gray-400">Our Promise</span>
               <h2
-                className="text-2xl lg:text-4xl font-bold text-[#111827] mt-3 mb-4"
+                className="text-2xl lg:text-4xl font-bold text-[#111827] dark:text-white mt-3 mb-4"
                 style={{ fontFamily: 'Space Grotesk, sans-serif' }}
               >
                 Results Guaranteed — Or We Fix It Free
               </h2>
-              <p className="text-[#6B7280] text-base lg:text-lg leading-relaxed mb-6">
+              <p className="text-[#6B7280] dark:text-gray-400 text-base lg:text-lg leading-relaxed mb-6">
                 We set clear KPIs before starting. If we don't hit the targets, 
                 we keep working at no extra cost until we do. Your success is our success.
               </p>
@@ -117,7 +118,7 @@ const Guarantee = () => {
                 {['+20% Efficiency', 'Money-Back Guarantee', 'Free Optimization'].map((tag, i) => (
                   <span
                     key={i}
-                    className="inline-flex items-center gap-1.5 bg-[#FFB400]/10 text-[#111827] text-sm font-medium px-3 py-1.5 rounded-full"
+                    className="inline-flex items-center gap-1.5 bg-[#FFB400]/10 dark:bg-[#FFB400]/20 text-[#111827] dark:text-white text-sm font-medium px-3 py-1.5 rounded-full"
                   >
                     <Check className="w-4 h-4 text-[#FFB400]" />
                     {tag}
@@ -134,7 +135,7 @@ const Guarantee = () => {
             <div
               key={index}
               ref={(el) => { itemsRef.current[index] = el; }}
-              className="card-q p-6 will-change-transform text-center"
+              className="card-q dark:bg-gray-900 p-6 will-change-transform text-center"
             >
               <div
                 className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4"
@@ -143,12 +144,12 @@ const Guarantee = () => {
                 <item.icon className="w-7 h-7" style={{ color: item.color }} />
               </div>
               <h3
-                className="text-lg font-bold text-[#111827] mb-2"
+                className="text-lg font-bold text-[#111827] dark:text-white mb-2"
                 style={{ fontFamily: 'Space Grotesk, sans-serif' }}
               >
                 {item.title}
               </h3>
-              <p className="text-[#6B7280] text-sm">
+              <p className="text-[#6B7280] dark:text-gray-400 text-sm">
                 {item.description}
               </p>
             </div>

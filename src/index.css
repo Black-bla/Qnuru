@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
+@font-face {
+  font-family: 'Pepsi';
+  src: url('/fonts/PEPSI_pl.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -39,6 +47,16 @@
 @layer base {
   * {
     @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
   
   html {
@@ -85,6 +103,142 @@
   
   .gold-rule {
     @apply w-16 h-[2px] bg-[#FFB400] rounded-full;
+  }
+  
+  /* Glassmorphism Utilities */
+  .glassmorphism {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .glassmorphism-strong {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px) saturate(200%);
+    -webkit-backdrop-filter: blur(16px) saturate(200%);
+  }
+  
+  .glassmorphism-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+      0 8px 32px 0 rgba(11, 61, 145, 0.08),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+    border-radius: 24px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glassmorphism-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+      0 16px 48px 0 rgba(11, 61, 145, 0.12),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+    border-color: rgba(11, 61, 145, 0.3);
+  }
+  
+  .glassmorphism-card.featured {
+    border: 2px solid #FFB400;
+    box-shadow: 
+      0 8px 32px 0 rgba(255, 180, 0, 0.15),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+  }
+  
+  /* Dark mode glassmorphism */
+  .dark .glassmorphism {
+    background: rgba(15, 15, 15, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .dark .glassmorphism-strong {
+    background: rgba(15, 15, 15, 0.95);
+  }
+  
+  .dark .glassmorphism-card {
+    background: rgba(26, 26, 26, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  .dark .glassmorphism-card:hover {
+    box-shadow: 
+      0 16px 48px 0 rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    border-color: rgba(37, 99, 235, 0.5);
+  }
+  
+  .dark .glassmorphism-card.featured {
+    border: 2px solid #FFB400;
+    box-shadow: 
+      0 8px 32px 0 rgba(255, 180, 0, 0.25),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  /* Icon badge */
+  .icon-badge {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glassmorphism-card:hover .icon-badge {
+    transform: scale(1.1) rotate(5deg);
+  }
+  
+  /* Fallback for browsers without backdrop-filter support */
+  @supports not (backdrop-filter: blur(12px)) {
+    .glassmorphism {
+      background: rgba(255, 255, 255, 0.95);
+    }
+    
+    .glassmorphism-card {
+      background: rgba(255, 255, 255, 0.95);
+    }
+    
+    .dark .glassmorphism {
+      background: rgba(15, 15, 15, 0.95);
+    }
+    
+    .dark .glassmorphism-card {
+      background: rgba(26, 26, 26, 0.95);
+    }
+  }
+  
+  /* Flip Clock Countdown - Light & Dark Mode Theme */
+  .flip-clock-hero {
+    --fcc-flip-duration: 0.5s;
+    --fcc-spacing: 6px;
+    --fcc-digit-block-width: 48px;
+    --fcc-digit-block-height: 56px;
+    --fcc-digit-block-radius: 12px;
+    --fcc-digit-block-spacing: 4px;
+    --fcc-digit-font-size: 28px;
+    --fcc-digit-color: #2563EB;
+    --fcc-label-font-size: 10px;
+    --fcc-label-color: #999999;
+    --fcc-background: #F4F4F2;
+    --fcc-divider-color: transparent;
+    --fcc-divider-height: 0px;
+    --fcc-separator-size: 4px;
+    --fcc-separator-color: #666666;
+  }
+  
+  .dark .flip-clock-hero {
+    --fcc-digit-color: #60A5FA;
+    --fcc-label-color: #9CA3AF;
+    --fcc-background: #1F2937;
+    --fcc-separator-color: #9CA3AF;
   }
 }
 

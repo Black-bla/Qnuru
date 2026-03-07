@@ -1,31 +1,42 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Linkedin, Twitter, Mail } from 'lucide-react';
+import { Linkedin, Twitter, ArrowRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const teamMembers = [
   {
     name: 'Isaac',
-    role: 'Co-Founder & Head of Operations',
-    description: 'Leading client success and project delivery. Ensures every solution hits its targets.',
-    image: '/portrait_isaac.jpg',
+    role: 'CEO & Commercial Lead',
+    description: 'Driving client acquisition, partnerships, and revenue growth. Turns relationships into results.',
+    image: '/images/team/isaac.png',
     color: '#00BFA6',
+    height: '520px', // Varying heights
   },
   {
     name: 'Mackenzie',
-    role: 'Co-Founder & Head of Growth',
-    description: 'Driving brand strategy and marketing excellence. Turns visibility into revenue.',
-    image: '/portrait_mackenzie.jpg',
-    color: '#0B3D91',
+    role: 'CMO & Brand Strategist',
+    description: 'Leading brand development, social media, and marketing campaigns. Builds trust at scale.',
+    image: '/images/team/Makenzie.png',
+    color: '#FFB400',
+    height: '580px',
   },
   {
-    name: 'Jotham Situma',
-    role: 'Co-Founder & Head of Technology',
-    description: 'Architecting scalable systems and AI solutions. Building the tech that powers growth.',
-    image: '/portrait_jotham.jpg',
-    color: '#FFB400',
+    name: 'Jotham',
+    role: 'CTO & Systems Architect',
+    description: 'Architecting scalable systems, AI solutions, and technical infrastructure. Powers innovation.',
+    image: '/images/team/Jotham.png',
+    color: '#0B3D91',
+    height: '560px',
+  },
+  {
+    name: 'Ian',
+    role: 'COO & Lead Engineer',
+    description: 'Overseeing operations, quality control, and engineering excellence. Delivers perfection.',
+    image: '/images/team/ian.png',
+    color: '#00BFA6',
+    height: '540px',
   },
 ];
 
@@ -83,88 +94,162 @@ const Team = () => {
     <section
       ref={sectionRef}
       id="team"
-      className="relative w-full bg-[#F6F7FB] py-20 lg:py-32 z-[60]"
+      className="relative w-full bg-white dark:bg-gray-900 py-20 lg:py-32 z-[60] transition-colors duration-300"
     >
-      <div className="w-full px-6 lg:px-12">
+      <div className="w-full">
         {/* Section Header */}
-        <div ref={titleRef} className="text-center max-w-3xl mx-auto mb-16">
-          <span className="section-label">Meet the Team</span>
-          <div className="gold-rule mt-3 mx-auto" />
+        <div ref={titleRef} className="text-center max-w-6xl mx-auto mb-20 px-6">
           <h2
-            className="text-3xl lg:text-5xl font-bold text-[#111827] mt-6"
+            className="text-5xl lg:text-7xl font-bold text-[#111827] dark:text-white leading-tight"
             style={{ fontFamily: 'Space Grotesk, sans-serif' }}
           >
-            The Minds Behind Qnuru
+            THE TEAM POWERING
+            <br />
+            YOUR GROWTH
           </h2>
-          <p className="text-[#6B7280] text-base lg:text-lg mt-4">
-            Three co-founders, one mission: building tech that drives real business results.
+          <p className="text-[#6B7280] dark:text-gray-400 text-lg lg:text-xl mt-6 max-w-2xl mx-auto">
+            Four visionaries building Kenya's next-generation digital ecosystem. 
+            From tech to brand, operations to strategy—we've got you covered.
           </p>
         </div>
 
-        {/* Team Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        {/* Mobile: 2x2 Grid - No Space */}
+        <div className="md:hidden grid grid-cols-2 relative">
           {teamMembers.map((member, index) => (
             <div
               key={index}
               ref={(el) => { cardsRef.current[index] = el; }}
-              className="card-q overflow-hidden will-change-transform group"
+              className="will-change-transform group cursor-pointer"
             >
-              {/* Image */}
-              <div className="relative h-64 lg:h-72 overflow-hidden">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                
-                {/* Social links */}
-                <div className="absolute bottom-4 left-4 flex gap-2">
-                  <button className="w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-[#FFB400] transition-colors">
-                    <Linkedin className="w-4 h-4 text-[#111827]" />
-                  </button>
-                  <button className="w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-[#00BFA6] transition-colors">
-                    <Twitter className="w-4 h-4 text-[#111827]" />
-                  </button>
+              {/* Pill Shape */}
+              <div 
+                className="relative w-full rounded-t-full overflow-hidden transition-all duration-500"
+                style={{ 
+                  backgroundColor: member.color,
+                  height: '300px'
+                }}
+              >
+                {/* Image Container */}
+                <div className="absolute inset-0 flex items-end justify-center overflow-hidden px-4">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-[85%] object-cover object-top transition-transform duration-700"
+                    style={{ 
+                      filter: 'grayscale(100%) contrast(1.1)',
+                      mixBlendMode: 'multiply'
+                    }}
+                  />
+                </div>
+
+                {/* Name at Bottom */}
+                <div className="absolute bottom-6 left-0 right-0 text-center px-4 transition-all duration-500 group-hover:-translate-y-20">
+                  <h3
+                    className="text-lg font-bold text-white"
+                    style={{ fontFamily: 'Pepsi, Space Grotesk, sans-serif' }}
+                  >
+                    {member.name.toUpperCase()}
+                  </h3>
+                </div>
+
+                {/* Details - Hidden until hover */}
+                <div className="absolute bottom-0 left-0 right-0 text-center px-4 pb-4 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none group-hover:pointer-events-auto">
+                  <p className="text-xs text-white font-semibold mb-2">
+                    {member.role}
+                  </p>
+                  <p className="text-xs text-white leading-relaxed mb-3 line-clamp-2">
+                    {member.description}
+                  </p>
+                  <div className="flex justify-center gap-2">
+                    <button className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors">
+                      <Linkedin className="w-3 h-3 text-white" />
+                    </button>
+                    <button className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors">
+                      <Twitter className="w-3 h-3 text-white" />
+                    </button>
+                  </div>
                 </div>
               </div>
+            </div>
+          ))}
+        </div>
 
-              {/* Info */}
-              <div className="p-6">
-                <div
-                  className="w-10 h-1 rounded-full mb-4"
-                  style={{ backgroundColor: member.color }}
-                />
-                <h3
-                  className="text-xl font-bold text-[#111827]"
-                  style={{ fontFamily: 'Space Grotesk, sans-serif' }}
-                >
-                  {member.name}
-                </h3>
-                <p className="text-sm font-medium mt-1" style={{ color: member.color }}>
-                  {member.role}
-                </p>
-                <p className="text-[#6B7280] text-sm mt-3 leading-relaxed">
-                  {member.description}
-                </p>
+        {/* Desktop: Full Width Pills - Side by Side - No Gaps */}
+        <div className="hidden md:flex items-end">
+          {teamMembers.map((member, index) => (
+            <div
+              key={`desktop-${index}`}
+              className="flex-1 will-change-transform group cursor-pointer"
+            >
+              {/* Pill Shape */}
+              <div 
+                className="relative w-full rounded-t-full overflow-hidden transition-all duration-500"
+                style={{ 
+                  backgroundColor: member.color,
+                  height: member.height
+                }}
+              >
+                {/* Image Container */}
+                <div className="absolute inset-0 flex items-end justify-center overflow-hidden px-8">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-[80%] object-cover object-top transition-transform duration-700"
+                    style={{ 
+                      filter: 'grayscale(100%) contrast(1.1)',
+                      mixBlendMode: 'multiply'
+                    }}
+                  />
+                </div>
+
+                {/* Name at Bottom - Moves up on hover */}
+                <div className="absolute bottom-10 left-0 right-0 text-center px-6 transition-all duration-500 group-hover:-translate-y-32">
+                  <h3
+                    className="text-3xl lg:text-4xl font-bold text-white"
+                    style={{ fontFamily: 'Pepsi, Space Grotesk, sans-serif' }}
+                  >
+                    {member.name.toUpperCase()}
+                  </h3>
+                </div>
+
+                {/* Details - Hidden until hover, revealed at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 text-center px-6 pb-8 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none group-hover:pointer-events-auto">
+                  <p className="text-base lg:text-lg text-white font-bold mb-3">
+                    {member.role}
+                  </p>
+                  <p className="text-sm text-white leading-relaxed mb-6 max-w-xs mx-auto">
+                    {member.description}
+                  </p>
+                  <div className="flex justify-center gap-3">
+                    <button className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors">
+                      <Linkedin className="w-5 h-5 text-white" />
+                    </button>
+                    <button className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors">
+                      <Twitter className="w-5 h-5 text-white" />
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
         {/* Hiring CTA */}
-        <div className="text-center mt-12">
-          <div className="inline-flex items-center gap-3 bg-[#0B3D91]/5 rounded-full px-6 py-3">
-            <Mail className="w-5 h-5 text-[#0B3D91]" />
-            <span className="text-[#111827] text-sm">
-              We're hiring engineers & creators —{' '}
-              <a
-                href="mailto:hello@qnuru.co.ke"
-                className="text-[#0B3D91] hover:text-[#FFB400] font-medium transition-colors"
-              >
-                hello@qnuru.co.ke
-              </a>
-            </span>
+        <div className="text-center mt-32 lg:mt-40 px-6">
+          <div className="inline-flex flex-col items-center gap-4">
+            <h3 
+              className="text-2xl lg:text-3xl font-bold text-[#111827] dark:text-white"
+              style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+            >
+              Want to join the team?
+            </h3>
+            <a
+              href="mailto:careers@qnuru.co.ke"
+              className="inline-flex items-center gap-3 bg-[#0B3D91] hover:bg-[#FFB400] text-white px-8 py-4 rounded-full font-bold transition-all duration-300 group"
+            >
+              <span>VIEW OPEN POSITIONS</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
           </div>
         </div>
       </div>
